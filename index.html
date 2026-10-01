@@ -1,0 +1,529 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>esiesley.ar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+/* Layout: una sola columna de papel con el chasis de la campaña (hairline + etiqueta mono arriba y abajo).
+   Registro 1 (papel y tinta) señala el hueco; registro 2 (color) lo llena. Una sola apariencia, a propósito. */
+:root{
+  --paper:#F0EFEA; --sheet:#FBFAF6; --ink:#2B2B29; --grey:#6E6E66; --hair:#C9C7BF;
+  --yellow:#FFED00; --fucsia:#FF3DA5; --azul:#2C4BFF; --naranja:#FF6B1A;
+  --lima:#B8F03C; --lila:#C9B6FF; --celeste:#7FD3FF; --on-azul:#FFFFFF;
+  --f-display:"Anton","Impact","Arial Narrow Bold",sans-serif;
+  --f-black:"Archivo","Arial Black","Helvetica Neue",Arial,sans-serif;
+  --f-body:"Archivo","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"IBM Plex Mono","SFMono-Regular",Menlo,Consolas,monospace;
+  --wrap:1120px; --gut:clamp(16px,4vw,40px);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{
+  background:var(--paper); color:var(--ink); font-family:var(--f-body); font-size:17px; line-height:1.5;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.17 0 0 0 0 0.17 0 0 0 0 0.16 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--azul);outline-offset:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut)}
+.mono{font-family:var(--f-mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+h1,h2,h3{margin:0;text-wrap:balance}
+
+/* prototipo */
+.proto{background:var(--ink);color:var(--paper);padding-block:8px;text-align:center}
+.proto .mono{font-size:11px;letter-spacing:.12em}
+
+/* chasis */
+.chasis{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;padding-block:14px;border-bottom:1px solid var(--hair)}
+.chasis.bottom{border-bottom:0;border-top:1px solid var(--hair)}
+.chasis .mono{color:var(--grey)}
+nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 18px}
+nav a{text-decoration:none;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+nav a:hover{text-decoration:underline}
+.firma-chip{background:var(--yellow);color:var(--ink);font-family:var(--f-black);font-weight:900;line-height:1;padding:8px 10px 7px;display:inline-flex;flex-direction:column;text-decoration:none}
+.firma-chip b{font-size:15px;letter-spacing:.01em}
+.firma-chip span{font-size:9px;letter-spacing:.09em}
+
+/* hero */
+.hero{padding-block:clamp(36px,7vw,80px) clamp(28px,5vw,56px)}
+.hero .eyebrow{color:var(--grey);margin-bottom:18px}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(46px,8.2vw,108px);line-height:.94;letter-spacing:-.005em;max-width:15ch}
+.hueco{position:relative;margin-top:clamp(24px,4vw,40px);border:2px dashed var(--hair);min-height:clamp(140px,22vw,230px);display:grid;place-items:center;padding:24px;text-align:center}
+.hueco .mono{color:var(--grey)}
+.hueco .mono strong{color:var(--ink);font-weight:600}
+.reg{position:absolute;width:18px;height:18px}
+.reg::before,.reg::after{content:"";position:absolute;background:var(--ink)}
+.reg::before{left:8px;top:0;width:2px;height:18px}
+.reg::after{top:8px;left:0;height:2px;width:18px}
+.reg i{position:absolute;inset:3px;border:1.5px solid var(--ink);border-radius:50%}
+.reg.tl{top:-10px;left:-10px}.reg.tr{top:-10px;right:-10px}.reg.bl{bottom:-10px;left:-10px}.reg.br{bottom:-10px;right:-10px}
+.giro{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px 40px;align-items:end;margin-top:clamp(28px,4vw,44px)}
+.giro p{margin:0;font-size:clamp(19px,2.2vw,24px);max-width:36ch}
+.giro p strong{font-family:var(--f-black);font-weight:900}
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{font-family:var(--f-black);font-weight:700;font-size:16px;text-decoration:none;padding:13px 18px;border:2px solid var(--ink);background:var(--sheet);color:var(--ink);cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+.btn.solid{background:var(--ink);color:var(--paper)}
+.btn.yellow{background:var(--yellow);border-color:var(--ink)}
+.btn:hover{transform:translateY(-1px)}
+
+/* accesos color (registro 2) */
+.accesos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-top:clamp(28px,4vw,40px)}
+.acceso{min-width:0;text-decoration:none;padding:18px 16px 16px;display:flex;flex-direction:column;justify-content:space-between;gap:28px;min-height:150px}
+.acceso .mono{font-size:11px}
+.acceso b{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,3vw,34px);line-height:1}
+.c-fucsia{background:var(--fucsia)}.c-azul{background:var(--azul);color:var(--on-azul)}.c-naranja{background:var(--naranja)}
+.c-lima{background:var(--lima)}.c-yellow{background:var(--yellow)}.c-lila{background:var(--lila)}.c-celeste{background:var(--celeste)}
+
+/* secciones */
+section{padding-block:clamp(48px,7vw,88px);border-top:1px solid var(--hair)}
+.head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px 40px;align-items:end;margin-bottom:clamp(24px,4vw,40px)}
+.head .mono{color:var(--grey);grid-column:1/-1}
+.head h2{font-family:var(--f-display);font-weight:400;font-size:clamp(38px,5.4vw,68px);line-height:.95}
+.head p{margin:0;max-width:46ch;color:var(--ink)}
+.nota{font-family:var(--f-mono);font-size:11.5px;letter-spacing:.06em;color:var(--grey);margin-top:14px}
+.nota.flag{display:inline-block;border:1px dashed var(--grey);padding:6px 10px}
+
+/* buscador */
+.buscador{background:var(--lima);padding:clamp(18px,3vw,28px)}
+.buscador form{display:flex;flex-wrap:wrap;gap:10px}
+.buscador label{flex-basis:100%;font-family:var(--f-mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+.buscador input{flex:1 1 260px;min-width:0;font:500 18px/1.2 var(--f-body);padding:13px 14px;border:2px solid var(--ink);background:var(--sheet);color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.chip{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1.5px solid var(--ink);padding:4px 8px;background:var(--sheet)}
+.resultados{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:8px}
+.resultado{background:var(--sheet);border:2px solid var(--ink);padding:14px 16px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:4px 16px;align-items:center}
+.resultado .pin{width:34px;height:34px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--ink);display:grid;place-items:center}
+.resultado .pin span{transform:rotate(45deg);color:var(--lima);font:900 14px var(--f-black)}
+.resultado h3{font:700 17px/1.25 var(--f-black)}
+.resultado p{margin:2px 0 0;font-size:14.5px;color:var(--grey)}
+.resultado .dist{font-family:var(--f-mono);font-size:13px;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* tutoriales */
+.tutos{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr));gap:10px;align-items:start}
+details.tuto{min-width:0}
+details.tuto summary{list-style:none;cursor:pointer;padding:18px 18px 16px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:start}
+details.tuto summary::-webkit-details-marker{display:none}
+.num{font:900 15px/1 var(--f-black);background:var(--ink);color:var(--paper);padding:7px 8px 6px;font-variant-numeric:tabular-nums}
+.c-azul .num{background:var(--on-azul);color:var(--azul)}
+details.tuto h3{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.02}
+.mas{font:700 22px/1 var(--f-black);transition:transform .2s}
+details[open] .mas{transform:rotate(45deg)}
+.pasos{margin:0;padding:0 18px 20px 18px;list-style:none;counter-reset:p;display:grid;gap:10px}
+.pasos li{counter-increment:p;display:grid;grid-template-columns:28px minmax(0,1fr);gap:8px;font-size:15.5px;line-height:1.45}
+.pasos li::before{content:counter(p);font:900 13px/1 var(--f-black);border:1.5px solid currentColor;width:22px;height:22px;display:grid;place-items:center;margin-top:1px}
+.pasos a{font-weight:700}
+
+/* gratis por ley */
+.ley{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.ley article{background:var(--sheet);border:1px solid var(--hair);padding:22px 20px;min-width:0}
+.ley .mono{color:var(--grey);font-size:11px}
+.ley h3{font-family:var(--f-display);font-weight:400;font-size:30px;line-height:1;margin:10px 0 12px}
+.ley ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:15.5px}
+.tel{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:14px}
+.tel code{font:600 20px var(--f-mono);letter-spacing:.04em;user-select:all}
+.copy{font-family:var(--f-mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:none;border:1.5px solid var(--ink);padding:5px 8px;cursor:pointer;color:var(--ink)}
+
+/* datos */
+.datos{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.cifras{display:grid;gap:0}
+.cifra{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr);gap:4px 20px;align-items:baseline;padding-block:16px;border-top:1px solid var(--hair)}
+.cifra:last-child{border-bottom:1px solid var(--hair)}
+.cifra b{font-family:var(--f-display);font-weight:400;font-size:clamp(36px,4.4vw,52px);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.cifra p{margin:0;font-size:15.5px}
+.cifra .mono{grid-column:2;font-size:10.5px;color:var(--grey);letter-spacing:.1em}
+.grafico{background:var(--sheet);border:1px solid var(--hair);padding:20px 18px 14px}
+.grafico h3{font:700 16px/1.3 var(--f-black);margin-bottom:4px}
+.grafico .mono{color:var(--grey);font-size:10.5px}
+.grafico svg{width:100%;height:auto;display:block;margin-top:12px}
+.escala{margin-top:22px}
+.barra{height:22px;background:var(--ink);margin-top:6px}
+.barra.vacia{background:none;border-left:2px solid var(--ink);height:22px}
+.escala .fila{font-size:14px;margin-top:12px;display:flex;justify-content:space-between;gap:12px}
+.escala .fila span:last-child{font-family:var(--f-mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+
+/* firmá */
+.firma-sec{background:var(--ink);color:var(--paper);border-top:0}
+.firma-sec .head .mono,.firma-sec .head p{color:#C9C7BF}
+.firma-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.pedido{border-left:6px solid var(--yellow);padding:4px 0 4px 18px;font-size:clamp(18px,2vw,21px);margin:0 0 22px;max-width:44ch}
+.pixeles{display:grid;grid-template-columns:repeat(40,1fr);gap:2px;background:#3A3A37;padding:2px}
+.pixeles i{aspect-ratio:1;background:#4A4A46;display:block}
+.pixeles i.on{background:var(--yellow)}
+.contador{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-top:10px;font-family:var(--f-mono);font-size:12px;letter-spacing:.08em;color:#C9C7BF;font-variant-numeric:tabular-nums}
+.contador strong{color:var(--yellow);font-weight:600}
+form.firmar{background:var(--sheet);color:var(--ink);padding:clamp(18px,3vw,28px);display:grid;gap:14px}
+.campos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.campo{display:grid;gap:5px;min-width:0}
+.campo label{font-family:var(--f-mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+.campo input,.campo select{font:500 16px var(--f-body);padding:11px 12px;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);width:100%;min-width:0}
+.check{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;font-size:14px;align-items:start}
+.check input{width:18px;height:18px;margin-top:2px;accent-color:var(--ink)}
+form.firmar .btn{justify-content:center;font-size:18px}
+.ok{background:var(--yellow);color:var(--ink);padding:14px 16px;font-size:15px}
+.ok b{font-family:var(--f-black)}
+.legal{font-size:12.5px;color:var(--grey);margin:0}
+
+/* compartí */
+.compartir{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px 32px;align-items:center}
+.compartir blockquote{margin:0;background:var(--sheet);border:1px solid var(--hair);padding:18px 20px;font-size:17px}
+.compartir blockquote span{font-family:var(--f-mono);font-size:13px;color:var(--grey)}
+
+footer .fuentes{padding-block:24px 8px;font-size:13px;color:var(--grey);max-width:80ch}
+footer .fuentes p{margin:0 0 6px}
+
+@media (max-width:860px){
+  .accesos{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .head,.giro,.datos,.firma-grid,.compartir{grid-template-columns:minmax(0,1fr)}
+  .ley{grid-template-columns:minmax(0,1fr)}
+}
+@media (max-width:520px){
+  .campos{grid-template-columns:minmax(0,1fr)}
+  .resultado{grid-template-columns:auto minmax(0,1fr)}
+  .resultado .dist{grid-column:2}
+  .pixeles{grid-template-columns:repeat(25,1fr)}
+  nav ul{gap:6px 14px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}.btn:hover{transform:none}}
+</style>
+</head>
+<body>
+
+<div class="proto"><div class="wrap"><span class="mono">Prototipo para el pitch · Brother × Amnistía · esiesley.ar todavía no existe · el formulario no envía nada</span></div></div>
+
+<header class="wrap">
+  <div class="chasis">
+    <span class="mono">ESI · Ley 26.150</span>
+    <nav aria-label="Secciones"><ul>
+      <li><a href="#testeate">Testeate</a></li>
+      <li><a href="#tutoriales">Tutoriales</a></li>
+      <li><a href="#gratis">Gratis por ley</a></li>
+      <li><a href="#datos">Datos</a></li>
+      <li><a href="#firma">Firmá</a></li>
+    </ul></nav>
+    <a class="firma-chip" href="#firma" aria-label="Amnistía Internacional Argentina"><b>AMNISTÍA</b><span>INTERNACIONAL</span></a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <p class="mono eyebrow">Si llegaste desde un cartel vacío, este es el lugar</p>
+    <h1>Acá iría la información que el Estado no te dio.</h1>
+
+    <div class="hueco" aria-label="Espacio vacío">
+      <span class="reg tl" aria-hidden="true"><i></i></span><span class="reg tr" aria-hidden="true"><i></i></span>
+      <span class="reg bl" aria-hidden="true"><i></i></span><span class="reg br" aria-hidden="true"><i></i></span>
+      <p class="mono">Espacio sin contenido<br>Partida ESI 2025: <strong>no asignada</strong></p>
+    </div>
+
+    <div class="giro">
+      <p><strong>Como no llegó, la pusimos nosotros.</strong> Dónde testearte gratis, cómo cuidarte, qué te corresponde por ley y cómo exigir que la ESI vuelva a tener presupuesto.</p>
+      <div class="btns">
+        <a class="btn solid" href="#testeate">Encontrá dónde testearte</a>
+        <a class="btn yellow" href="#firma">Firmá el reclamo</a>
+      </div>
+    </div>
+
+    <div class="accesos">
+      <a class="acceso c-lima" href="#testeate"><span class="mono">Gratis · confidencial</span><b>Dónde testearte</b></a>
+      <a class="acceso c-fucsia" href="#tutoriales"><span class="mono">7 tutoriales</span><b>Lo que no te enseñaron</b></a>
+      <a class="acceso c-lila" href="#gratis"><span class="mono">Ley 25.673</span><b>Lo que es gratis</b></a>
+      <a class="acceso c-yellow" href="#firma"><span class="mono">Reclamo al Estado</span><b>Firmá</b></a>
+    </div>
+  </div>
+
+  <section id="testeate">
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">01 · Testeate</span>
+        <h2>Acá iría el mapa de dónde testearte gratis.</h2>
+        <p>Como no está, lo armamos. El test de sífilis es una extracción de sangre: gratis, confidencial y sin necesidad de tener síntomas. Poné tu dirección y te mostramos el centro más cercano.</p>
+      </div>
+      <div class="buscador">
+        <form id="buscar">
+          <label for="dir">Tu dirección o barrio</label>
+          <input id="dir" name="dir" type="text" value="Almagro, CABA" autocomplete="street-address">
+          <button class="btn solid" type="submit">Buscar</button>
+        </form>
+        <div class="chips" aria-label="Condiciones">
+          <span class="chip">Gratis</span><span class="chip">Confidencial</span><span class="chip">Sin síntomas también</span><span class="chip">Resultado en el día en muchos centros</span>
+        </div>
+        <p class="mono" id="cerca" style="margin:18px 0 0;font-size:11.5px">Más cerca de Almagro, CABA</p>
+        <ul class="resultados" id="resultados">
+          <li class="resultado"><span class="pin"><span>1</span></span><div><h3>Centro de salud (ejemplo)</h3><p>Lunes a viernes · 8 a 14 h · sin turno</p></div><span class="dist">a 350 m</span></li>
+          <li class="resultado"><span class="pin"><span>2</span></span><div><h3>Hospital público (ejemplo)</h3><p>Lunes a sábado · 7 a 12 h · con turno web</p></div><span class="dist">a 1,2 km</span></li>
+          <li class="resultado"><span class="pin"><span>3</span></span><div><h3>Consultorio de salud sexual (ejemplo)</h3><p>Martes y jueves · 14 a 19 h · sin turno</p></div><span class="dist">a 2,0 km</span></li>
+        </ul>
+      </div>
+      <p class="nota flag">Ejemplo: la lista real de centros, con dirección y horario, la provee y verifica Amnistía.</p>
+    </div>
+  </section>
+
+  <section id="tutoriales">
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">02 · Tutoriales</span>
+        <h2>Acá está el tutorial que el Estado no te dio.</h2>
+        <p>Siete preguntas que la ESI respondía. Ninguna es vergonzosa: lo que faltó fue la respuesta. Tocá cada una para abrirla.</p>
+      </div>
+      <div class="tutos">
+        <details class="tuto c-fucsia" open>
+          <summary><span class="num">01</span><h3>¿Cómo se contagia la sífilis?</h3><span class="mas" aria-hidden="true">+</span></summary>
+          <ol class="pasos">
+            <li>En relaciones vaginales, anales u orales sin preservativo.</li>
+            <li>Por contacto con una lesión, aunque no haya penetración.</li>
+            <li>Durante el embarazo, de la persona gestante al bebé.</li>
+            <li>No se contagia por compartir un vaso, un baño o una pileta.</li>
+          </ol>
+        </details>
+        <details class="tuto c-azul">
+          <summary><span class="num">02</span><h3>¿Cuáles son los síntomas?</h3><span class="mas" aria-hidden="true">+</span></summary>
+          <ol class="pasos">
+            <li>Primero, una llaga que no duele y se va sola en unas semanas. Que se vaya no significa que te curaste.</li>
+            <li>Después pueden aparecer manchas en el cuerpo, en las palmas y en las plantas, fiebre o ganglios.</li>
+            <li>Puede quedar años sin síntomas y seguir avanzando.</li>
+            <li>Muchas veces no da ningún síntoma. Por eso el test.</li>
+          </ol>
+        </details>
+        <details class="tuto c-naranja">
+          <summary><span class="num">03</span><h3>¿Cómo se previene?</h3><span class="mas" aria-hidden="true">+</span></summary>
+          <ol class="pasos">
+            <li>Preservativo en todas las prácticas, de principio a fin.</li>
+            <li>Campo de látex para el sexo oral, o un preservativo cortado.</li>
+            <li>Testeo periódico, aunque no tengas síntomas.</li>
+            <li>Si tenés pareja, se testean los dos.</li>
+          </ol>
+        </details>
+        <details class="tuto c-lima">
+          <summary><span class="num">04</span><h3>¿Dónde me testeo gratis?</h3><span class="mas" aria-hidden="true">+</span></summary>
+          <ol class="pasos">
+            <li>En cualquier centro de salud u hospital público.</li>
+            <li>Es gratis y confidencial.</li>
+            <li>Es una extracción de sangre. En muchos lugares el resultado sale el mismo día.</li>
+            <li><a href="#testeate">Buscá el centro más cercano a tu casa.</a></li>
+          </ol>
+        </details>
+        <details class="tuto c-yellow">
+          <summary><span class="num">05</span><h3>¿Cómo me trato?</h3><span class="mas" aria-hidden="true">+</span></summary>
+          <ol class="pasos">
+            <li>Con penicilina inyectable, gratis en el sistema público.</li>
+            <li>Una inyección si es reciente; tres, una por semana, si es de hace más tiempo o no se sabe.</li>
+            <li>Tus parejas sexuales recientes también se testean y se tratan.</li>
+            <li>Después hay controles de sangre. Te la podés volver a agarrar.</li>
+          </ol>
+        </details>
+        <details class="tuto c-lila">
+          <summary><span class="num">06</span><h3>¿Cómo accedo a anticonceptivos?</h3><span class="mas" aria-hidden="true">+</span></summary>
+          <ol class="pasos">
+            <li>Son gratis por la Ley 25.673 en el sistema público, y las obras sociales y prepagas los cubren al 100%.</li>
+            <li>Pedí consejería: te explican todos los métodos antes de elegir.</li>
+            <li>El implante y el DIU también son gratuitos.</li>
+            <li>Ninguno protege de ITS salvo el preservativo. Se combinan.</li>
+          </ol>
+        </details>
+        <details class="tuto c-celeste">
+          <summary><span class="num">07</span><h3>¿Dónde consigo información?</h3><span class="mas" aria-hidden="true">+</span></summary>
+          <ol class="pasos">
+            <li>En un centro de salud con consejería.</li>
+            <li>En la escuela: la ESI es obligatoria por la Ley 26.150.</li>
+            <li>En la Línea Salud Sexual: 0800 222 3444.</li>
+            <li>Acá, en esiesley.ar.</li>
+          </ol>
+        </details>
+      </div>
+      <p class="nota flag">Contenido a validar por el equipo de salud de Amnistía antes de publicar.</p>
+    </div>
+  </section>
+
+  <section id="gratis">
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">03 · Gratis por ley</span>
+        <h2>Acá iría lo que te corresponde. Ya es tu derecho.</h2>
+        <p>Amnistía no reparte insumos: te dice dónde ya son gratis por ley y qué hacer si no te los dan.</p>
+      </div>
+      <div class="ley">
+        <article>
+          <span class="mono">Centros de salud y hospitales públicos</span>
+          <h3>Preservativos</h3>
+          <ul>
+            <li>Se piden sin receta y sin dar explicaciones.</li>
+            <li>Es el único método que previene ITS y embarazo a la vez.</li>
+            <li>Si te dicen que no hay, pedí el libro de quejas: la falta también se denuncia.</li>
+          </ul>
+        </article>
+        <article>
+          <span class="mono">Ley 25.673</span>
+          <h3>Anticonceptivos</h3>
+          <ul>
+            <li>Pastillas, inyectable, implante, DIU y anticoncepción de emergencia.</li>
+            <li>Gratis en el sistema público.</li>
+            <li>Cubiertos al 100% por obras sociales y prepagas.</li>
+          </ul>
+        </article>
+        <article>
+          <span class="mono">Atención telefónica</span>
+          <h3>Línea Salud Sexual</h3>
+          <ul>
+            <li>Información sobre métodos, testeo y dónde atenderte.</li>
+            <li>También para avisar si un centro no te da lo que te corresponde.</li>
+          </ul>
+          <div class="tel"><code id="tel">0800 222 3444</code><button class="copy" type="button" data-copy="0800 222 3444">Copiar</button></div>
+        </article>
+      </div>
+      <p class="nota">A verificar con Amnistía: horario de la línea y formulación legal de edad y autonomía para pedir anticonceptivos.</p>
+    </div>
+  </section>
+
+  <section id="datos">
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">04 · Datos</span>
+        <h2>Lo que no se ve, en números.</h2>
+        <p>Mientras el presupuesto bajaba, los casos de sífilis subían. Las dos cosas pasaron al mismo tiempo.</p>
+      </div>
+      <div class="datos">
+        <div class="cifras">
+          <div class="cifra"><b>46.779</b><p>casos de sífilis notificados en 2025, el máximo desde que hay registro (1994).</p><span class="mono">Boletín Epidemiológico Nacional N° 803</span></div>
+          <div class="cifra"><b>−98%</b><p>presupuesto de ESI en 2026 respecto de 2023. En 2025 no tuvo partida.</p><span class="mono">ACIJ y ELA</span></div>
+          <div class="cifra"><b>−85%</b><p>presupuesto real del Plan ENIA en 2025 respecto de 2023. 619 agentes despedidos.</p><span class="mono">ACIJ y ELA</span></div>
+          <div class="cifra"><b>−81%</b><p>distribución de anticonceptivos entre 2023 y 2024.</p><span class="mono">Organizaciones de la sociedad civil</span></div>
+        </div>
+        <div class="grafico">
+          <h3>Tasa de sífilis cada 100.000 habitantes</h3>
+          <span class="mono">Se multiplicó por 4,4 en cuatro años</span>
+          <svg viewBox="0 0 520 226" role="img" aria-label="Tasa de sífilis: 26,5 en 2021, 57,6 en 2022, 69,2 en 2023, 93,0 en 2024 y 117,2 en 2025">
+            <line x1="10" y1="190" x2="510" y2="190" stroke="#C9C7BF" stroke-width="1"/>
+            <g font-family="IBM Plex Mono, monospace" font-size="13" fill="#2B2B29" text-anchor="middle">
+              <rect x="30" y="154" width="60" height="36" fill="#C9C7BF"/><text x="60" y="146">26,5</text><text x="60" y="212" fill="#6E6E66">2021</text>
+              <rect x="130" y="111" width="60" height="79" fill="#C9C7BF"/><text x="160" y="103">57,6</text><text x="160" y="212" fill="#6E6E66">2022</text>
+              <rect x="230" y="96" width="60" height="94" fill="#C9C7BF"/><text x="260" y="88">69,2</text><text x="260" y="212" fill="#6E6E66">2023</text>
+              <rect x="330" y="63" width="60" height="127" fill="#C9C7BF"/><text x="360" y="55">93,0</text><text x="360" y="212" fill="#6E6E66">2024</text>
+              <rect x="430" y="30" width="60" height="160" fill="#2B2B29"/><text x="460" y="22" font-weight="600">117,2</text><text x="460" y="212" fill="#6E6E66">2025</text>
+            </g>
+          </svg>
+          <div class="escala">
+            <h3>Preservativos programados vs. distribuidos, 2025</h3>
+            <div class="fila"><span>Programados</span><span>20.000.000</span></div>
+            <div class="barra" aria-hidden="true"></div>
+            <div class="fila"><span>Distribuidos hasta octubre</span><span>832</span></div>
+            <div class="barra vacia" aria-hidden="true"></div>
+            <p class="nota" style="margin-top:8px">A esta escala, 832 no se ve. Fuente: Presupuesto Abierto.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="firma" class="firma-sec">
+    <div class="wrap">
+      <div class="head">
+        <span class="mono">05 · Firmá</span>
+        <h2>Este espacio se llena con tu firma.</h2>
+        <p>Cada firma pinta un cuadrado de amarillo. Es el mismo contador que muestra la pantalla de la calle.</p>
+      </div>
+      <div class="firma-grid">
+        <div>
+          <p class="pedido">Le exigimos al Estado nacional que cumpla la Ley 26.150: presupuesto para la ESI, que los preservativos y anticonceptivos programados lleguen a los centros de salud, y campañas de prevención de ITS.</p>
+          <div class="pixeles" id="pixeles" aria-hidden="true"></div>
+          <div class="contador"><span><strong id="n-firmas">7.412</strong> firmas · número de ejemplo</span><span>Meta: a definir con Amnistía</span></div>
+        </div>
+        <form class="firmar" id="firmar" novalidate>
+          <div class="campos">
+            <div class="campo"><label for="nombre">Nombre</label><input id="nombre" name="nombre" required autocomplete="given-name"></div>
+            <div class="campo"><label for="apellido">Apellido</label><input id="apellido" name="apellido" required autocomplete="family-name"></div>
+          </div>
+          <div class="campo"><label for="email">Email</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+          <div class="campo"><label for="provincia">Provincia</label>
+            <select id="provincia" name="provincia">
+              <option>Buenos Aires</option><option>CABA</option><option>Catamarca</option><option>Chaco</option><option>Chubut</option><option>Córdoba</option><option>Corrientes</option><option>Entre Ríos</option><option>Formosa</option><option>Jujuy</option><option>La Pampa</option><option>La Rioja</option><option>Mendoza</option><option>Misiones</option><option>Neuquén</option><option>Río Negro</option><option>Salta</option><option>San Juan</option><option>San Luis</option><option>Santa Cruz</option><option>Santa Fe</option><option>Santiago del Estero</option><option>Tierra del Fuego</option><option>Tucumán</option>
+            </select>
+          </div>
+          <label class="check"><input id="novedades" type="checkbox" checked><span>Quiero recibir novedades de la campaña de Amnistía.</span></label>
+          <button class="btn yellow" type="submit">Firmar</button>
+          <p class="ok" id="ok" role="status" hidden><b>Gracias, <span id="ok-nombre"></span>.</b> Tu cuadrado ya está pintado. En este prototipo la firma no se guarda ni se envía.</p>
+          <p class="legal">Tus datos los usa solo Amnistía Internacional Argentina para esta campaña.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="compartir">
+    <div class="wrap compartir">
+      <blockquote id="texto-compartir">Que la ESI no quede en blanco. Dónde testearte gratis, los tutoriales y el reclamo, en esiesley.ar <span>#QueLaESINoQuedeEnBlanco</span></blockquote>
+      <button class="btn solid" type="button" data-copy-from="texto-compartir">Copiar para compartir</button>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="fuentes">
+    <p>Fuentes: Boletín Epidemiológico Nacional N° 803 (Ministerio de Salud) · ACIJ y ELA · Presupuesto Abierto · relevamiento de organizaciones de la sociedad civil.</p>
+    <p>La campaña muestra que los recortes y el aumento de casos pasaron al mismo tiempo. No afirma que uno cause el otro.</p>
+  </div>
+  <div class="chasis bottom">
+    <span class="mono">Amnistía Internacional Argentina</span>
+    <span class="mono">esiesley.ar · Prototipo</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Cartel de firmas
+  var px = document.getElementById('pixeles');
+  var TOTAL = 600, firmas = 7412, META = 20000;
+  function on(n){ return Math.round(Math.min(n/META,1)*TOTAL); }
+  var frag = document.createDocumentFragment();
+  for (var i=0;i<TOTAL;i++){ var c=document.createElement('i'); frag.appendChild(c); }
+  px.appendChild(frag);
+  var cells = px.children, lit = on(firmas);
+  for (var j=0;j<lit;j++) cells[j].classList.add('on');
+  var fmt = function(n){ return n.toLocaleString('es-AR'); };
+
+  document.getElementById('firmar').addEventListener('submit', function(e){
+    e.preventDefault();
+    var nombre = document.getElementById('nombre').value.trim();
+    var email = document.getElementById('email').value.trim();
+    if(!nombre){ document.getElementById('nombre').focus(); return; }
+    if(!/^\S+@\S+\.\S+$/.test(email)){ document.getElementById('email').focus(); return; }
+    firmas += 1;
+    document.getElementById('n-firmas').textContent = fmt(firmas);
+    var idx = Math.min(lit, TOTAL-1);
+    cells[idx].classList.add('on'); lit = idx+1;
+    document.getElementById('ok-nombre').textContent = nombre;
+    document.getElementById('ok').hidden = false;
+  });
+
+  // Buscador de ejemplo
+  document.getElementById('buscar').addEventListener('submit', function(e){
+    e.preventDefault();
+    var v = document.getElementById('dir').value.trim() || 'tu dirección';
+    document.getElementById('cerca').textContent = 'Más cerca de ' + v;
+  });
+
+  // Copiar
+  function copiar(texto, btn){
+    var listo = function(){ var t=btn.textContent; btn.textContent='Copiado'; setTimeout(function(){btn.textContent=t;},1600); };
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(texto).then(listo, function(){ seleccionar(btn); });
+    } else { seleccionar(btn); }
+  }
+  function seleccionar(btn){
+    var id = btn.getAttribute('data-copy-from') || 'tel';
+    var r = document.createRange(); r.selectNodeContents(document.getElementById(id));
+    var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+  }
+  document.querySelectorAll('[data-copy]').forEach(function(b){
+    b.addEventListener('click', function(){ copiar(b.getAttribute('data-copy'), b); });
+  });
+  document.querySelectorAll('[data-copy-from]').forEach(function(b){
+    b.addEventListener('click', function(){ copiar(document.getElementById(b.getAttribute('data-copy-from')).textContent.trim(), b); });
+  });
+})();
+</script>
+</body>
+</html>
